@@ -195,7 +195,56 @@ const el = {
   progressFill: $("progress-fill"),
   loadingMessage: $("loading-message"),
   loadingFill: $("loading-fill"),
+  themeToggle: $("theme-toggle"),
 };
+
+const THEME_STORAGE_KEY = "career-dna-theme";
+
+function getThemeToggleText(theme) {
+  return theme === "light" ? "Dark" : "Light";
+}
+
+function applyTheme(theme) {
+  const normalizedTheme = theme === "light" ? "light" : "dark";
+  document.body.dataset.theme = normalizedTheme;
+
+  if (!el.themeToggle) return;
+
+  const themeLabel = el.themeToggle.querySelector(".theme-toggle__label");
+  const themeIcon = el.themeToggle.querySelector(".theme-toggle__icon");
+
+  if (themeLabel) themeLabel.textContent = getThemeToggleText(normalizedTheme);
+  if (themeIcon) themeIcon.textContent = normalizedTheme === "light" ? "☀️" : "🌙";
+  el.themeToggle.setAttribute("aria-label", `Switch to ${getThemeToggleText(normalizedTheme)} mode`);
+
+  try {
+    localStorage.setItem(THEME_STORAGE_KEY, normalizedTheme);
+  } catch (error) {
+    // Ignore localStorage issues in restricted browser contexts.
+  }
+}
+
+function initializeTheme() {
+  let savedTheme = null;
+
+  try {
+    savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
+  } catch (error) {
+    savedTheme = null;
+  }
+
+  const prefersLightMode =
+    window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches;
+
+  const initialTheme =
+    savedTheme === "light" || savedTheme === "dark"
+      ? savedTheme
+      : prefersLightMode
+        ? "light"
+        : "dark";
+
+  applyTheme(initialTheme);
+}
 
 /* =========================================================
    HELPERS
@@ -427,3 +476,12 @@ el.next.addEventListener("click", goNext);
 el.back.addEventListener("click", goBack);
 el.submit.addEventListener("click", submitQuiz);
 el.retake.addEventListener("click", restart);
+
+if (el.themeToggle) {
+  el.themeToggle.addEventListener("click", () => {
+    const currentTheme = document.body.dataset.theme === "light" ? "light" : "dark";
+    applyTheme(currentTheme === "light" ? "dark" : "light");
+  });
+}
+
+initializeTheme();
