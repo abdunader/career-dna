@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Career DNA</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="card">
+      <!-- INTRO -->
+      <section id="screen-intro" class="screen">
+        <div class="logo" aria-hidden="true">🧬</div>
+        <h1>Career DNA</h1>
+        <p class="subtitle">
+          Answer 12 quick questions and discover whether you fit better as a
+          <strong>Front-End</strong> or <strong>Back-End</strong> developer.
+        </p>
+        <ul class="intro-list">
+          <li>⏱ Takes about 2 minutes</li>
+          <li>✅ No right or wrong answers</li>
+          <li>💡 Pick what feels most like you</li>
+        </ul>
+        <button id="btn-start" class="btn btn-primary" type="button">
+          Start the test
+        </button>
+      </section>
+
+      <!-- QUIZ -->
+      <section id="screen-quiz" class="screen" hidden>
+        <div class="progress-wrap">
+          <div class="progress-text">
+            <span id="progress-label">Question 1 of 12</span>
+            <span id="progress-percent">0%</span>
+          </div>
+          <div
+            class="progress-bar"
+            role="progressbar"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-valuenow="0"
+            id="progress-bar">
+            <div class="progress-fill" id="progress-fill"></div>
+          </div>
+        </div>
+
+        <div id="question-box" class="question-box">
+          <h2 id="question-text" class="question-text"></h2>
+          <div
+            id="options"
+            class="options"
+            role="radiogroup"
+            aria-labelledby="question-text"></div>
+        </div>
+
+        <div class="nav">
+          <button id="btn-back" class="btn btn-secondary" type="button">
+            ← Back
+          </button>
+          <button id="btn-next" class="btn btn-primary" type="button" disabled>
+            Next →
+          </button>
+          <button
+            id="btn-submit"
+            class="btn btn-accent"
+            type="button"
+            disabled
+            hidden>
+            Submit ✓
+          </button>
+        </div>
+      </section>
+
+      <!-- LOADING -->
+      <section id="screen-loading" class="screen center" hidden>
+        <div class="spinner" aria-hidden="true"></div>
+        <h2>Analyzing your answers…</h2>
+        <p id="loading-message" class="subtitle" aria-live="polite">
+          Reading your answers
+        </p>
+        <div class="progress-bar slim">
+          <div class="progress-fill" id="loading-fill"></div>
+        </div>
+      </section>
+
+      <!-- RESULT -->
+      <section id="screen-result" class="screen" hidden>
+        <p class="eyebrow">Your Career DNA result</p>
+        <div class="result-icon" id="result-icon" aria-hidden="true"></div>
+        <h2 id="result-title" class="result-title"></h2>
+        <p id="result-level" class="badge"></p>
+        <p id="result-desc" class="subtitle"></p>
+
+        <div class="bars">
+          <div class="bar-row">
+            <div class="bar-label">
+              <span>🎨 Front-End</span><span id="fe-percent">0%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill fe" id="fe-fill"></div>
+            </div>
+          </div>
+          <div class="bar-row">
+            <div class="bar-label">
+              <span>⚙️ Back-End</span><span id="be-percent">0%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill be" id="be-fill"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-grid">
+          <div class="info-box">
+            <h3>Why you fit</h3>
+            <ul id="result-traits"></ul>
+          </div>
+          <div class="info-box">
+            <h3>Start learning</h3>
+            <ul id="result-stack"></ul>
+          </div>
+        </div>
+
+        <button id="btn-retake" class="btn btn-secondary full" type="button">
+          Retake the test
+        </button>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
