@@ -415,7 +415,7 @@ h3 {
     font-size: 2.4rem;
   }
   .info-grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
   }
   .nav .btn {
     flex: 0 0 auto;

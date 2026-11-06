@@ -437,7 +437,6 @@ function showResult(result) {
   $("result-level").textContent = getLevel(winnerPercent) + " · " + winnerPercent + "%";
   $("result-desc").textContent = data.desc;
   fillList("result-traits", data.traits);
-  fillList("result-stack", data.stack);
 
   // Reset bars, show screen, then animate
   $("fe-fill").style.width = "0%";
